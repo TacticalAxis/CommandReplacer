@@ -1,0 +1,11 @@
+name: CommandReplacer
+main: io.github.tacticalaxis.commandreplacer.CommandReplacer
+version: 1.0
+description: A plugin that replaces commands
+author: NathanD256
+prefix: CR
+api-version: 1.16
+commands:
+  cr:
+    description: Main Command
+    usage: /<command>

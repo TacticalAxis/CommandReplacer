@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CommandReplacer:jar">
+    <output-path>$PROJECT_DIR$/../../../../../../TestingServer1.16.4/plugins</output-path>
+    <root id="archive" name="CommandReplacer.jar">
+      <element id="module-output" name="CommandReplacer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../../TestingServer1.16.4/spigot-1.16.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
