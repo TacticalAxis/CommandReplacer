@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -60,23 +59,5 @@ public class ConfigurationManager {
     // MAIN CONFIGURATION
     public FileConfiguration getMainConfiguration() {
         return mainConfiguration;
-    }
-
-    public void saveMainConfiguration() {
-        try {
-            mainConfiguration.save(mainFile);
-        } catch (IOException e) {
-            Bukkit.getServer().getLogger().severe("Could not save " + mainConfigName + "!");
-        }
-    }
-
-    public void reloadConfiguration() {
-        for (String ymlFile : this.ymlFiles) {
-            try {
-                this.configs.get(ymlFile).load(new File(CommandReplacer.getInstance().getDataFolder(), ymlFile));
-            } catch (Exception ignored) {
-            }
-        }
-        setupConfiguration();
     }
 }
