@@ -28,8 +28,18 @@ public class BaseCommand extends CustomCommand {
             } else {
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), fullCommand);
             }
-        } else {
-            s.sendMessage(ChatColor.RED + "The command " + ChatColor.GOLD + cl + ChatColor.RED + " does not exist!");
+        }
+        else {
+            boolean exists = false;
+            for (String thing : ConfigurationManager.getInstance().getMainConfiguration().getKeys(false)) {
+                if (thing.split("-")[0].equalsIgnoreCase(cl.split(" ")[0])) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                s.sendMessage(ChatColor.RED + "The command " + ChatColor.GOLD + cl + ChatColor.RED + " does not exist!");
+            }
         }
     }
 
