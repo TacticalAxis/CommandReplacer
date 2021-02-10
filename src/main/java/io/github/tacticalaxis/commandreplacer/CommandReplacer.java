@@ -33,7 +33,6 @@ public class CommandReplacer extends JavaPlugin implements Listener {
     public void cmd(PlayerCommandPreprocessEvent event) {
         ConfigurationSection cfg = ConfigurationManager.getInstance().getMainConfiguration();
         String name = event.getMessage().substring(1).toLowerCase().split(" ")[0];
-//        int comm = event.getMessage().substring(1).toLowerCase().split(" ").length;
         ArrayList<String> command = new ArrayList<>(Arrays.asList(event.getMessage().substring(1).toLowerCase().split(" ")));
         ArrayList<String> args = new ArrayList<>();
         StringBuilder toExecute = new StringBuilder();
@@ -58,10 +57,19 @@ public class CommandReplacer extends JavaPlugin implements Listener {
             args.addAll(tmp);
         }
         if (!used) {
-            event.getPlayer().sendMessage(ChatColor.RED + "Invalid command. See options below");
+            boolean isReal = false;
             for (String cmd : cfg.getKeys(false)) {
-                if (cmd.split("-")[0].equalsIgnoreCase(name)) {
-                    event.getPlayer().sendMessage(ChatColor.GOLD + "/" + cmd.replace("-", " "));
+                if (cmd.toLowerCase().split("-")[0].equalsIgnoreCase(name)) {
+                    isReal = true;
+                    break;
+                }
+            }
+            if (isReal) {
+                event.getPlayer().sendMessage(ChatColor.RED + "Invalid command. See options below");
+                for (String cmd : cfg.getKeys(false)) {
+                    if (cmd.split("-")[0].equalsIgnoreCase(name)) {
+                        event.getPlayer().sendMessage(ChatColor.GOLD + "/" + cmd.replace("-", " "));
+                    }
                 }
             }
         } else {
